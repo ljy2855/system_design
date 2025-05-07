@@ -1,9 +1,8 @@
 import uuid
 from fastapi import FastAPI, HTTPException
 import redis
-import time
 
-from logger import get_recent_count, log_user_entry
+from app.logger import get_recent_count, log_user_entry
 
 app = FastAPI()
 
@@ -29,14 +28,13 @@ def health_check():
 @app.get("/enter")
 async def enter_queue():
     processed_count = await get_recent_count()
+    user_id = str(uuid.uuid4())
+    await log_user_entry(user_id)
 
     if processed_count < DAILY_CAPACITY:
-        user_id = str(uuid.uuid4())
-        await log_user_entry(user_id)
         return {"message": "즉시 입장 허가됨", "id": user_id, "enter_passed": True}
 
     # 대기열 등록
-    user_id = str(uuid.uuid4())
     r.rpush(QUEUE_KEY, user_id)
     return {"message": "대기열에 등록되었습니다", "id": user_id, "enter_passed": False}
 

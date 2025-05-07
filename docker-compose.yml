@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    volumes:
-      - ./app:/app
     environment:
       - REDIS_HOST=redis
       - MONGDO_URI=mongodb://mongodb:27017

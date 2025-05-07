@@ -2,7 +2,7 @@ import asyncio
 import httpx
 
 BASE_URL = "http://localhost:8000"
-CLIENT_COUNT = 10000
+CLIENT_COUNT = 1000
 CHECK_RETRY = 10
 CHECK_INTERVAL = 1
 

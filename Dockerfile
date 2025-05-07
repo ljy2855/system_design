@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir uv==0.6.3 && \
     uv sync
 
 # Copy the rest of the application code into the container
-COPY . .
+COPY ./app app
 
-CMD ["uv", "run", "uvicorn", "--host", "0.0.0.0", "--port", "8000", "main:app"]
+CMD ["uv", "run", "uvicorn", "--host", "0.0.0.0", "--port", "8000", "app.main:app"]

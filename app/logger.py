@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from motor.motor_asyncio import AsyncIOMotorClient
 
-mongo_client = AsyncIOMotorClient("mongodb://mongo:27017")
+mongo_client = AsyncIOMotorClient("mongodb://mongodb:27017")
 db = mongo_client["ticketing"]
 log_collection = db["processed_log"]
 
@@ -16,6 +16,4 @@ async def get_recent_count():
 
 # 처리 로그 기록
 async def log_user_entry(user_id: str):
-    await log_collection.insert_one(
-        {"user_id": user_id, "timestamp": datetime.utcnow()}
-    )
+    await log_collection.insert_one({"user_id": user_id, "timestamp": datetime.now()})
