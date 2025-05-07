@@ -1,0 +1,13 @@
+[project]
+name = "queue-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "httpx>=0.28.1",
+    "motor>=3.7.0",
+    "redis>=6.0.0",
+    "uvicorn>=0.34.2",
+]
