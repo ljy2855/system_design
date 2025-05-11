@@ -5,7 +5,6 @@
 - 트래픽 집중 상황에서도 안정적인 서비스를 제공하기 위해, 대기열 서버를 포함한 전체 시스템의 **네트워크 흐름 및 계층별 역할**을 정의한다.
 - 주요 목표:
   - 트래픽 분산
-  - 인증 및 보안 강화
   - 요청 속도 제어
   - 대기열 흐름 제어
   - API 서버 보호
@@ -61,7 +60,6 @@
 
 - gunicorn multi-worker vs uvicorn container
 - 대기열 서버 auto-scailing을 어떤 metric으로 할까?
-- 
 
 ## 저장소 및 캐시 계층
 
@@ -97,21 +95,3 @@
 
 - 실제 서비스 로직 (주문, 결제 등)을 처리
 - 오직 ticket이 유효하거나 처리량 여유가 있을 경우에만 진입 가능
-
----
-
-## 트래픽 흐름 요약
-
-```plaintext
-Client
-  ↓
-CDN / Cloud Load Balancer
-  ↓
-API Gateway (Nginx / Envoy)
-  ↓
-[대기열 서버 FastAPI]
-  ↙            ↘
-Redis         MongoDB
-  ↓
-[Main API Server]
-```
